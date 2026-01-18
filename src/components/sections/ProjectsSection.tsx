@@ -26,7 +26,7 @@ const ProjectsSection = () => {
         {
             title: 'Cubikpulse Digital Marketing',
             description: 'Dynamic website for a digital marketing agency showcasing services, portfolio, and client success stories.',
-            image: '/api/placeholder/600/400',
+            image: '/project/cubikpulse.webp',
             technologies: ['React', 'Framer Motion', 'Tailwind', 'SEO'],
             github: '#',
             live: 'http://cubikpulse.com/',
@@ -77,31 +77,33 @@ const ProjectsSection = () => {
                             animate={{ y: 0, opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, delay: index * 0.2 }}
                             whileHover={{ y: -10, scale: 1.02 }}
-                            className="group relative cursor-pointer gpu-accelerated"
-                            onClick={() => {
-                                if (project.live && project.live !== '#') {
-                                    window.open(project.live, '_blank', 'noopener,noreferrer');
-                                }
-                            }}
+                            className="group relative gpu-accelerated"
                         >
                             <div className="card-futuristic h-full flex flex-col overflow-hidden">
                                 {/* Project Image - Mobile Responsive */}
                                 <div className="relative h-40 sm:h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
                                     <div className="absolute inset-0 bg-mesh opacity-30" />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="text-4xl sm:text-5xl lg:text-6xl font-orbitron font-bold text-foreground/20">
-                                            {project.title.split(' ')[0]}
+                                    {project.image && project.image !== '/api/placeholder/600/400' ? (
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                    ) : (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="text-4xl sm:text-5xl lg:text-6xl font-orbitron font-bold text-foreground/20">
+                                                {project.title.split(' ')[0]}
+                                            </div>
                                         </div>
-                                    </div>
+                                    )}
                                     <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex gap-1 sm:gap-2">
                                         <motion.a
                                             href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="p-1.5 sm:p-2 bg-background/80 backdrop-blur-sm rounded-full text-muted-foreground hover:text-foreground transition-colors"
+                                            className="p-1.5 sm:p-2 bg-background/80 backdrop-blur-sm rounded-full text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            onClick={(e) => e.stopPropagation()}
                                         >
                                             <Github size={14} className="sm:w-4 sm:h-4" />
                                         </motion.a>
@@ -109,10 +111,9 @@ const ProjectsSection = () => {
                                             href={project.live}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="p-1.5 sm:p-2 bg-background/80 backdrop-blur-sm rounded-full text-muted-foreground hover:text-foreground transition-colors"
+                                            className="p-1.5 sm:p-2 bg-background/80 backdrop-blur-sm rounded-full text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
-                                            onClick={(e) => e.stopPropagation()}
                                         >
                                             <ExternalLink size={14} className="sm:w-4 sm:h-4" />
                                         </motion.a>
@@ -143,9 +144,8 @@ const ProjectsSection = () => {
 
                                     {/* CTA Button - Mobile Responsive */}
                                     <motion.button
-                                        className="w-full group/btn border border-primary/50 hover:bg-primary/10 text-sm sm:text-base py-2 sm:py-3 cursor-pointer bg-transparent rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-foreground hover:text-primary"
+                                        className="w-full group/btn relative z-10 border border-primary/50 hover:bg-primary/10 text-sm sm:text-base py-2 sm:py-3 cursor-pointer bg-transparent rounded-lg transition-all duration-300 flex items-center justify-center gap-2 text-foreground hover:text-primary"
                                         onClick={(e) => {
-                                            e.preventDefault();
                                             e.stopPropagation();
                                             if (project.live && project.live !== '#') {
                                                 window.open(project.live, '_blank', 'noopener,noreferrer');
