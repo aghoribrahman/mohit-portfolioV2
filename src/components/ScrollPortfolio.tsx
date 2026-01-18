@@ -206,7 +206,7 @@ const ScrollPortfolio = () => {
         <div
           ref={containerRef}
           className="relative w-full h-full z-10 overflow-hidden"
-          style={{ perspective: '1200px' }}
+          style={{ perspective: '1500px' }}
         >
           <motion.div
             className="flex h-full gpu-accelerated"
@@ -222,11 +222,27 @@ const ScrollPortfolio = () => {
           >
             {sections.map((section, index) => {
               const SectionComponent = section.component;
+              const isActive = index === currentSection;
+              const isPast = index < currentSection;
 
               return (
-                <div
+                <motion.div
                   key={section.id}
                   className="flex-shrink-0 w-screen h-full relative"
+                  animate={{
+                    scale: isActive ? 1 : 0.9,
+                    rotateY: isActive ? 0 : isPast ? 15 : -15,
+                    z: isActive ? 0 : -100,
+                    opacity: isActive ? 1 : 0.5,
+                    filter: isActive ? 'blur(0px)' : 'blur(2px)'
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 40,
+                    mass: 1
+                  }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
                   <SmoothScroll
                     ref={(el) => (sectionRefs.current[index] = el)}
@@ -243,7 +259,7 @@ const ScrollPortfolio = () => {
                   <div
                     className={`absolute inset-0 pointer-events-none opacity-5 bg-gradient-to-br from-${section.color} to-transparent`}
                   />
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
