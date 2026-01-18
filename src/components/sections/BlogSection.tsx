@@ -43,18 +43,18 @@ const BlogSection = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 bg-gradient-to-br from-background via-primary/5 to-background overflow-y-auto">
+    <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 pb-40 md:pb-12 bg-gradient-to-br from-background via-primary/5 to-background overflow-y-auto">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-12"
+          className="text-left mb-8 sm:mb-12"
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-orbitron font-bold mb-3 sm:mb-4">
             Latest <span className="text-gradient">Insights</span>
           </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto mb-4 sm:mb-6 px-4 sm:px-0">
+          <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-2xl mb-4 sm:mb-6 px-4 sm:px-0">
             Sharing knowledge about product development, technology, and innovation
           </p>
           <motion.a

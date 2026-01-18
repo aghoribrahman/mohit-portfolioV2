@@ -18,7 +18,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 bg-gradient-to-br from-background via-muted/10 to-background overflow-y-auto">
+    <section className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 py-8 sm:py-12 pb-40 md:pb-12 bg-gradient-to-br from-background via-muted/10 to-background overflow-y-auto">
       <div className="absolute inset-0 bg-mesh opacity-20" />
       <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10">
         {/* Left Column - Text Content */}
@@ -43,7 +43,7 @@ const AboutSection = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              I'm a passionate Product Manager and Full-Stack Developer with 4+ years of experience
+              Software Expert with 4+ years of experience
               building innovative digital solutions. I thrive at the intersection of technology and
               user experience, creating products that solve real-world problems.
             </motion.p>

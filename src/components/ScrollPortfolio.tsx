@@ -1,6 +1,6 @@
 import React, { useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Github, Linkedin, Mail, Twitter, Home, User, Layers, Folder, Briefcase, FileText, Phone } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import HeroSection from './sections/HeroSection';
 import Navigation from './Navigation';
@@ -26,13 +26,13 @@ const ScrollPortfolio = () => {
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const sections = [
-    { id: 'hero', component: HeroSection, title: 'Home', color: 'primary' },
-    { id: 'about', component: AboutSection, title: 'About', color: 'secondary' },
-    { id: 'tech', component: TechStackSection, title: 'Stack', color: 'accent' },
-    { id: 'projects', component: ProjectsSection, title: 'Projects', color: 'neon-purple' },
-    { id: 'experience', component: ExperienceSection, title: 'Experience', color: 'neon-blue' },
-    { id: 'blog', component: BlogSection, title: 'Blog', color: 'neon-green' },
-    { id: 'contact', component: ContactSection, title: 'Contact', color: 'neon-orange' }
+    { id: 'hero', component: HeroSection, title: 'Home', color: 'primary', icon: Home },
+    { id: 'about', component: AboutSection, title: 'About', color: 'secondary', icon: User },
+    { id: 'tech', component: TechStackSection, title: 'Stack', color: 'accent', icon: Layers },
+    { id: 'projects', component: ProjectsSection, title: 'Projects', color: 'neon-purple', icon: Folder },
+    { id: 'experience', component: ExperienceSection, title: 'Experience', color: 'neon-blue', icon: Briefcase },
+    { id: 'blog', component: BlogSection, title: 'Blog', color: 'neon-green', icon: FileText },
+    { id: 'contact', component: ContactSection, title: 'Contact', color: 'neon-orange', icon: Phone }
   ];
 
   const {
@@ -301,65 +301,89 @@ const ScrollPortfolio = () => {
           </motion.button>
         )}
 
-        {/* Section Indicators - Enhanced Mobile Size */}
-        <div className={`fixed ${isMobile ? 'bottom-4' : 'bottom-4'} left-1/2 transform -translate-x-1/2 z-30`}>
-          <div className={`flex gap-3 ${isMobile ? 'p-3' : 'p-3'} rounded-2xl bg-background/20 backdrop-blur-xl border border-border/30`}>
-            {sections.map((section, index) => (
-              <motion.button
-                key={index}
-                onClick={() => navigateToSection(index)}
-                className={`relative ${isMobile ? 'w-4 h-4' : 'w-3 h-3'} rounded-full transition-all duration-300 group`}
-                style={{
-                  backgroundColor: currentSection === index
-                    ? section.color === 'primary' ? 'hsl(var(--primary))' :
-                      section.color === 'secondary' ? 'hsl(var(--secondary))' :
-                        section.color === 'accent' ? 'hsl(var(--accent))' :
-                          section.color === 'neon-purple' ? 'hsl(var(--neon-purple))' :
-                            section.color === 'neon-blue' ? 'hsl(var(--neon-blue))' :
-                              section.color === 'neon-green' ? 'hsl(var(--neon-green))' :
-                                section.color === 'neon-orange' ? 'hsl(var(--neon-orange))' :
-                                  'hsl(var(--primary))'
-                    : 'hsl(var(--muted-foreground) / 0.3)',
-                  boxShadow: currentSection === index
-                    ? `0 0 20px ${section.color === 'primary' ? 'hsl(var(--primary) / 0.5)' :
-                      section.color === 'secondary' ? 'hsl(var(--secondary) / 0.5)' :
-                        section.color === 'accent' ? 'hsl(var(--accent) / 0.5)' :
-                          section.color === 'neon-purple' ? 'hsl(var(--neon-purple) / 0.5)' :
-                            section.color === 'neon-blue' ? 'hsl(var(--neon-blue) / 0.5)' :
-                              section.color === 'neon-green' ? 'hsl(var(--neon-green) / 0.5)' :
-                                section.color === 'neon-orange' ? 'hsl(var(--neon-orange) / 0.5)' :
-                                  'hsl(var(--primary) / 0.5)'
-                    }`
-                    : 'none'
-                }}
-                whileHover={{
-                  scale: isMobile ? 1.3 : 1.3,
-                  backgroundColor: section.color === 'primary' ? 'hsl(var(--primary) / 0.7)' :
-                    section.color === 'secondary' ? 'hsl(var(--secondary) / 0.7)' :
-                      section.color === 'accent' ? 'hsl(var(--accent) / 0.7)' :
-                        section.color === 'neon-purple' ? 'hsl(var(--neon-purple) / 0.7)' :
-                          section.color === 'neon-blue' ? 'hsl(var(--neon-blue) / 0.7)' :
-                            section.color === 'neon-green' ? 'hsl(var(--neon-green) / 0.7)' :
-                              section.color === 'neon-orange' ? 'hsl(var(--neon-orange) / 0.7)' :
-                                'hsl(var(--primary) / 0.7)'
-                }}
-                whileTap={{ scale: 0.85 }}
-                aria-label={`Go to ${section.title}`}
-              >
-                {/* Tooltip - Desktop Only */}
-                {!isMobile && (
+        {/* Improved Mobile Navigation - Bottom Bar (Floating & Compressed) */}
+        {isMobile && (
+          <div className="fixed bottom-8 left-4 right-4 z-50 p-1.5 bg-background/80 backdrop-blur-xl border border-border/30 rounded-2xl shadow-lg shadow-primary/5">
+            <div className="flex justify-between items-center overflow-x-auto no-scrollbar gap-1 px-1">
+              {sections.map((section, index) => {
+                const Icon = section.icon;
+                const isActive = currentSection === index;
+                return (
+                  <motion.button
+                    key={index}
+                    onClick={() => navigateToSection(index)}
+                    className={`flex flex-col items-center justify-center min-w-[50px] py-1.5 rounded-xl transition-all duration-300 ${isActive ? 'bg-primary/15 text-primary' : 'text-muted-foreground hover:text-foreground'}`}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <Icon size={18} className={`mb-0.5 ${isActive ? 'stroke-[2.5px]' : 'stroke-2'}`} />
+                    <span className={`text-[9px] font-rajdhani font-medium whitespace-nowrap ${isActive ? 'text-primary' : ''}`}>
+                      {section.title}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Desktop Navigation Dots - Hidden on Mobile */}
+        {!isMobile && (
+          <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30">
+            <div className="flex gap-3 p-3 rounded-2xl bg-background/20 backdrop-blur-xl border border-border/30">
+              {sections.map((section, index) => (
+                <motion.button
+                  key={index}
+                  onClick={() => navigateToSection(index)}
+                  className="relative w-3 h-3 rounded-full transition-all duration-300 group"
+                  style={{
+                    backgroundColor: currentSection === index
+                      ? section.color === 'primary' ? 'hsl(var(--primary))' :
+                        section.color === 'secondary' ? 'hsl(var(--secondary))' :
+                          section.color === 'accent' ? 'hsl(var(--accent))' :
+                            section.color === 'neon-purple' ? 'hsl(var(--neon-purple))' :
+                              section.color === 'neon-blue' ? 'hsl(var(--neon-blue))' :
+                                section.color === 'neon-green' ? 'hsl(var(--neon-green))' :
+                                  section.color === 'neon-orange' ? 'hsl(var(--neon-orange))' :
+                                    'hsl(var(--primary))'
+                      : 'hsl(var(--muted-foreground) / 0.3)',
+                    boxShadow: currentSection === index
+                      ? `0 0 20px ${section.color === 'primary' ? 'hsl(var(--primary) / 0.5)' :
+                        section.color === 'secondary' ? 'hsl(var(--secondary) / 0.5)' :
+                          section.color === 'accent' ? 'hsl(var(--accent) / 0.5)' :
+                            section.color === 'neon-purple' ? 'hsl(var(--neon-purple) / 0.5)' :
+                              section.color === 'neon-blue' ? 'hsl(var(--neon-blue) / 0.5)' :
+                                section.color === 'neon-green' ? 'hsl(var(--neon-green) / 0.5)' :
+                                  section.color === 'neon-orange' ? 'hsl(var(--neon-orange) / 0.5)' :
+                                    'hsl(var(--primary) / 0.5)'
+                      }`
+                      : 'none'
+                  }}
+                  whileHover={{
+                    scale: 1.3,
+                    backgroundColor: section.color === 'primary' ? 'hsl(var(--primary) / 0.7)' :
+                      section.color === 'secondary' ? 'hsl(var(--secondary) / 0.7)' :
+                        section.color === 'accent' ? 'hsl(var(--accent) / 0.7)' :
+                          section.color === 'neon-purple' ? 'hsl(var(--neon-purple) / 0.7)' :
+                            section.color === 'neon-blue' ? 'hsl(var(--neon-blue) / 0.7)' :
+                              section.color === 'neon-green' ? 'hsl(var(--neon-green) / 0.7)' :
+                                section.color === 'neon-orange' ? 'hsl(var(--neon-orange) / 0.7)' :
+                                  'hsl(var(--primary) / 0.7)'
+                  }}
+                  whileTap={{ scale: 0.85 }}
+                  aria-label={`Go to ${section.title}`}
+                >
                   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                     <div className="px-3 py-1 bg-background/90 backdrop-blur-sm border border-border/50 rounded-lg text-xs font-rajdhani whitespace-nowrap">
                       {section.title}
                     </div>
                   </div>
-                )}
-              </motion.button>
-            ))}
+                </motion.button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Scroll Progress Indicator for Current Section - Repositioned */}
+        {/* Scroll Progress Indicator for Current Section - Repositioned (Already done, no change needed) */}
         <div className={`fixed ${isMobile ? 'right-1 top-20' : 'right-2 lg:right-3 top-24'} z-30`}>
           <div className={`${isMobile ? 'w-1 h-24' : 'w-1 lg:w-1.5 h-32 lg:h-36'} bg-background/20 backdrop-blur-xl border border-border/30 rounded-full overflow-hidden`}>
             <motion.div
@@ -383,9 +407,9 @@ const ScrollPortfolio = () => {
 
 
 
-        {/* Social Links - Only on Hero Section */}
+        {/* Social Links - Only on Hero Section - Adjusted for Mobile Nav */}
         {currentSection === 0 && (
-          <div className="fixed left-2 sm:left-4 lg:left-6 bottom-4 sm:bottom-6 lg:bottom-8 z-30">
+          <div className={`fixed left-2 sm:left-4 lg:left-6 ${isMobile ? 'bottom-28' : 'bottom-4 sm:bottom-6 lg:bottom-8'} z-30`}>
             <div className={`${isMobile
               ? 'flex flex-col gap-1.5 p-1.5'
               : 'flex flex-col gap-2 sm:gap-3 p-2 sm:p-3'
