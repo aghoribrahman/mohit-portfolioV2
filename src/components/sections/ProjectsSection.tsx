@@ -6,31 +6,49 @@ import { Button } from '../ui/button';
 const ProjectsSection = () => {
     const projects = [
         {
+            title: 'AyrexandFields Property Listing',
+            description: 'Premium property listing website connecting buyers with luxury real estate opportunities.',
+            image: '/project/aurex.webp',
+            technologies: ['React', 'Next.js', 'Tailwind CSS', 'PostgreSQL'],
+            github: '#',
+            live: 'https://aurexfield.com/',
+            color: 'primary'
+        },
+        {
+            title: 'Bhoomi Tour and Travels',
+            description: 'Efficient cab booking service platform offering seamless travel experiences and tour packages.',
+            image: '/project/bhoomi.webp',
+            technologies: ['React', 'Node.js', 'MongoDB', 'Google Maps API'],
+            github: '#',
+            live: 'https://bhoomitourandtravels.com/',
+            color: 'secondary'
+        },
+        {
+            title: 'Cubikpulse Digital Marketing',
+            description: 'Dynamic website for a digital marketing agency showcasing services, portfolio, and client success stories.',
+            image: '/api/placeholder/600/400',
+            technologies: ['React', 'Framer Motion', 'Tailwind', 'SEO'],
+            github: '#',
+            live: 'http://cubikpulse.com/',
+            color: 'accent'
+        },
+        {
             title: 'BrickBix Real Estate Platform',
             description: 'Real estate platform, Specifically designed for real estate professionals',
-            image: '/api/placeholder/600/400',
+            image: '/project/brickbix.webp',
             technologies: ['React', 'Node.js', 'PostgreSQL', 'AI/ML'],
             github: '#',
             live: 'https://brickbix.in/',
-            color: 'primary'
+            color: 'neon-purple'
         },
         {
             title: 'Medical Equipment Marketplace',
             description: 'B2B platform connecting healthcare providers with medical equipment suppliers globally.',
-            image: '/api/placeholder/600/400',
+            image: '/project/carentmedico.webp',
             technologies: ['Next.js', 'TypeScript', 'Stripe', 'AWS'],
             github: '#',
             live: 'https://carentmedico.com/',
-            color: 'secondary'
-        },
-        {
-            title: 'Telecom Equipment Website',
-            description: 'Futuristic, scroll-triggered portfolio with advanced animations and responsive design.',
-            image: '/api/placeholder/600/400',
-            technologies: ['React', 'Framer Motion', 'Tailwind', 'TypeScript'],
-            github: '#',
-            live: 'https://onsmettels.netlify.app/',
-            color: 'accent'
+            color: 'neon-blue'
         }
     ];
 
