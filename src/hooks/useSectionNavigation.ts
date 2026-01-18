@@ -37,16 +37,16 @@ export const useSectionNavigation = ({ sectionsLength, sectionRefs }: UseSection
       }
 
       const { scrollTop, scrollHeight, clientHeight } = currentSectionElement;
-      const scrollPercentage = (scrollTop + clientHeight) / scrollHeight;
-
+      // Strict scroll detection - only allow next navigation when user has scrolled to the bottom
+      const isAtBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight - 2;
       const contentFitsViewport = scrollHeight <= clientHeight + 20;
-      setCanNavigateNext(contentFitsViewport || scrollPercentage >= 0.85);
+      setCanNavigateNext(contentFitsViewport || isAtBottom);
       setCanNavigatePrev(currentSection > 0);
     };
 
     const timeoutId = setTimeout(checkScrollPosition, 100);
     const currentSectionElement = sectionRefs.current[currentSection];
-    
+
     if (currentSectionElement) {
       currentSectionElement.addEventListener('scroll', checkScrollPosition, { passive: true });
       return () => {
@@ -157,12 +157,12 @@ export const useSectionNavigation = ({ sectionsLength, sectionRefs }: UseSection
         if (deltaY > 0 && atBottom && currentSection < sectionsLength - 1 && canNavigateNext) {
           if (touchScrollTimeout) clearTimeout(touchScrollTimeout);
           touchScrollTimeout = setTimeout(() => {
-             if (!isScrollInProgress && !isTransitioning) triggerTransition(1);
+            if (!isScrollInProgress && !isTransitioning) triggerTransition(1);
           }, 150);
         } else if (deltaY < 0 && atTop && currentSection > 0 && canNavigatePrev) {
           if (touchScrollTimeout) clearTimeout(touchScrollTimeout);
           touchScrollTimeout = setTimeout(() => {
-             if (!isScrollInProgress && !isTransitioning) triggerTransition(-1);
+            if (!isScrollInProgress && !isTransitioning) triggerTransition(-1);
           }, 150);
         } else if (touchScrollTimeout) {
           clearTimeout(touchScrollTimeout);

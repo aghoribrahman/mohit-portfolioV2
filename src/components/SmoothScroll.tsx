@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, forwardRef } from 'react';
 import Lenis from 'lenis';
 
 interface SmoothScrollProps {
@@ -6,12 +6,24 @@ interface SmoothScrollProps {
     className?: string;
 }
 
-const SmoothScroll = ({ children, className = '' }: SmoothScrollProps) => {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
+const SmoothScroll = forwardRef<HTMLDivElement, SmoothScrollProps>(({ children, className = '' }, ref) => {
+    const internalRef = useRef<HTMLDivElement>(null);
     const lenisRef = useRef<Lenis | null>(null);
 
+    // Sync forwarded ref with internal ref
     useEffect(() => {
-        const element = scrollContainerRef.current;
+        if (!ref) return;
+
+        if (typeof ref === 'function') {
+            ref(internalRef.current);
+        } else {
+            // @ts-ignore - explicitly handling MutableRefObject
+            ref.current = internalRef.current;
+        }
+    }, [ref]);
+
+    useEffect(() => {
+        const element = internalRef.current;
         if (!element) return;
 
         const lenis = new Lenis({
@@ -41,10 +53,12 @@ const SmoothScroll = ({ children, className = '' }: SmoothScrollProps) => {
     }, []);
 
     return (
-        <div ref={scrollContainerRef} className={`w-full h-full overflow-y-auto ${className}`}>
+        <div ref={internalRef} className={`w-full h-full overflow-y-auto ${className}`}>
             {children}
         </div>
     );
-};
+});
+
+SmoothScroll.displayName = "SmoothScroll";
 
 export default SmoothScroll;
