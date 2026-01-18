@@ -43,8 +43,8 @@ const Navigation: React.FC<NavigationProps> = ({ sections, currentSection, onNav
                 key={section.id}
                 onClick={() => onNavigate(index)}
                 className={`relative px-1.5 lg:px-2 xl:px-3 py-1 lg:py-1.5 font-rajdhani font-medium hover:font-bold rounded-full transition-all duration-300 text-xs whitespace-nowrap ${currentSection === index
-                    ? 'text-primary bg-primary/20 shadow-md'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-background/20'
+                  ? 'text-primary bg-primary/20 shadow-md'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-background/20'
                   }`}
               >
                 {section.title}

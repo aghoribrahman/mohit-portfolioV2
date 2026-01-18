@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Download, ArrowRight, Code, Zap } from 'lucide-react';
 
+import TextBlockAnimation from '@/components/ui/text-block-animation';
+
 interface HeroSectionProps {
   onNavigateToProjects?: () => void;
 }
@@ -237,48 +239,49 @@ const HeroSection = ({ onNavigateToProjects }: HeroSectionProps) => {
           className="max-w-5xl mx-auto text-center space-y-4 sm:space-y-6 lg:space-y-8"
         >
           {/* Greeting - Top positioned */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center justify-center gap-2"
-          >
-            <Zap className="text-accent" size={16} />
-            <span className="text-accent font-rajdhani font-medium text-sm">Hey there, I'm</span>
-          </motion.div>
+          <div className="flex items-center justify-center">
+            <TextBlockAnimation animateOnScroll={false} delay={0.1} blockColor="#f59e0b" duration={0.6}>
+              <div className="flex items-center gap-2">
+                <Zap className="text-accent" size={16} />
+                <span className="text-accent font-rajdhani font-medium text-sm">Hey there, I'm</span>
+              </div>
+            </TextBlockAnimation>
+          </div>
 
           {/* Large Name Title - Center positioned - Reduced Size */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-orbitron font-black relative leading-tight"
-          >
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent relative z-10">MOHIT</span>
-            <br />
-            <span className="text-foreground relative z-10">TRIVEDI</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent opacity-10 blur-2xl">
-              MOHIT<br />TRIVEDI
-            </div>
-          </motion.h1>
+          <div className="flex justify-center">
+            <TextBlockAnimation animateOnScroll={false} delay={0.3} blockColor="#6366f1" duration={0.8}>
+              <h1 className="text-3xl sm:text-2xl md:text-3xl lg:text-4xl font-orbitron font-black relative leading-tight">
+                <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent relative z-10 px-1">MOHIT TRIVEDI</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent opacity-10 blur-2xl">
+                  MOHIT TRIVEDI
+                </div>
+              </h1>
+            </TextBlockAnimation>
+          </div>
 
           {/* Subtitle - Reduced Size */}
-          <motion.h2
-            variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-rajdhani font-medium text-muted-foreground"
-          >
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Product Leader & Full-Stack Developer
-            </span>
-
-          </motion.h2>
+          <div className="flex justify-center">
+            <TextBlockAnimation animateOnScroll={false} delay={0.6} blockColor="#10b981" duration={0.8}>
+              <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-rajdhani font-medium text-muted-foreground">
+                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                  Product Leader & Full-Stack Developer
+                </span>
+              </h2>
+            </TextBlockAnimation>
+          </div>
 
           {/* Tagline - Reduced Size */}
-          <motion.p
-            variants={itemVariants}
-            className="text-sm sm:text-base md:text-lg font-rajdhani"
-          >
-            <span className="text-muted-foreground">Building Products with </span>
-            <span className="text-accent font-semibold">Purpose </span>
-            <span className="text-muted-foreground">and </span>
-            <span className="text-secondary font-semibold">Precision</span>
-          </motion.p>
+          <div className="flex justify-center">
+            <TextBlockAnimation animateOnScroll={false} delay={0.9} blockColor="#ec4899" duration={0.8}>
+              <p className="text-sm sm:text-base md:text-lg font-rajdhani">
+                <span className="text-muted-foreground">Building Products with </span>
+                <span className="text-accent font-semibold">Purpose </span>
+                <span className="text-muted-foreground">and </span>
+                <span className="text-secondary font-semibold">Precision</span>
+              </p>
+            </TextBlockAnimation>
+          </div>
 
           {/* Stats Row - Horizontal layout - Reduced Size */}
           <motion.div

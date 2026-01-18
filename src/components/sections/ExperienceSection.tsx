@@ -5,22 +5,22 @@ import { Calendar, MapPin, ChevronRight } from 'lucide-react';
 const ExperienceSection = () => {
   const experiences = [
     {
-      title: 'Product Manager',
+      title: 'Co-Founder',
       company: 'BrickBix',
-      location: 'Mumbai, India',
+      location: 'Indore, India',
       period: '2022 - Present',
       description: 'Led product strategy and development for real estate SaaS platform. Managed cross-functional teams and increased user engagement by 150%.',
       achievements: [
         'Launched distribution platform for real estate agents',
         'Implemented AI-based real estate recommendations',
         'Onboarded 300+ real estate agents',
-        
+
       ],
       color: 'primary'
     },
     {
       title: 'Full-Stack Developer',
-      company: 'Freelance',
+      company: 'MERN',
       location: 'Remote',
       period: '2020 - 2022',
       description: 'Developed custom web applications for various clients including healthcare, e-commerce, and fintech sectors.',
@@ -33,14 +33,14 @@ const ExperienceSection = () => {
     },
     {
       title: 'Technical Writer',
-      company: 'Rewa',
-      location: 'Bangalore, India',
-      period: '2019 - 2020',
+      company: 'DevDynamics',
+      location: 'Remote',
+      period: '2019 - 2021',
       description: 'Created technical documentation and developer guides for API platforms and developer tools.',
       achievements: [
         'Authored 10+ technical articles',
         'Improved developer onboarding by 80%',
-        
+
       ],
       color: 'accent'
     }
@@ -185,11 +185,11 @@ const ExperienceSection = () => {
                 top: `${8 + i * 15}%`
               }}
             >
-              {i % 5 === 0 ? 'promoted to senior' : 
-               i % 5 === 1 ? 'led team of 10+' : 
-               i % 5 === 2 ? 'shipped 50+ features' : 
-               i % 5 === 3 ? 'mentored developers' : 
-               'scaled to 1M+ users'}
+              {i % 5 === 0 ? 'promoted to senior' :
+                i % 5 === 1 ? 'led team of 10+' :
+                  i % 5 === 2 ? 'shipped 50+ features' :
+                    i % 5 === 3 ? 'mentored developers' :
+                      'scaled to 1M+ users'}
             </motion.div>
           ))}
 
@@ -213,10 +213,10 @@ const ExperienceSection = () => {
                 top: `${25 + i * 20}%`
               }}
             >
-              {i % 4 === 0 ? '99.9% uptime' : 
-               i % 4 === 1 ? '200% revenue ↑' : 
-               i % 4 === 2 ? '150% engagement ↑' : 
-               '80% faster onboarding'}
+              {i % 4 === 0 ? '99.9% uptime' :
+                i % 4 === 1 ? '200% revenue ↑' :
+                  i % 4 === 2 ? '150% engagement ↑' :
+                    '80% faster onboarding'}
             </motion.div>
           ))}
 
@@ -241,12 +241,12 @@ const ExperienceSection = () => {
                 top: `${55 + i * 8}%`
               }}
             >
-              {i % 6 === 0 ? 'React → Next.js' : 
-               i % 6 === 1 ? 'JS → TypeScript' : 
-               i % 6 === 2 ? 'REST → GraphQL' : 
-               i % 6 === 3 ? 'SQL → NoSQL' : 
-               i % 6 === 4 ? 'Monolith → Microservices' : 
-               'On-premise → Cloud'}
+              {i % 6 === 0 ? 'React → Next.js' :
+                i % 6 === 1 ? 'JS → TypeScript' :
+                  i % 6 === 2 ? 'REST → GraphQL' :
+                    i % 6 === 3 ? 'SQL → NoSQL' :
+                      i % 6 === 4 ? 'Monolith → Microservices' :
+                        'On-premise → Cloud'}
             </motion.div>
           ))}
 
@@ -272,7 +272,7 @@ const ExperienceSection = () => {
               }}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
               </svg>
             </motion.div>
           ))}
